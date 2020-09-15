@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang=de>
+<head>
+    <meta charset="utf-8">
+    <title>Thermometer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+<body>
+<div class="container">
+    <h1>Raspberry Pi Thermometer</h1>
+
+    <div class="actual">
+        <p>Aktuelle Temperatur:</p>
+        <div class="bold" id='actualTemp'></div>
+    </div>
+
+
+    <div class="set">
+        <p class="bold">Gewünschte Zieltemperatur durch schieben auswählen</p>
+
+        <div id="slidecontainer">
+            <input type="range" min="0" max="30" value="20" class="slider" id="range">
+            <div id="wishTemperature" >Gewählte Temperatur: <span id="range_value"></span> &#8451;</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+
+    let slider = document.getElementById("range");
+    let output = document.getElementById("range_value");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+        output.innerHTML = slider.value;
+        fetch(`http://${location.host}/set_temp?temp=${slider.value}`)
+            .then((resp) => resp.json())
+            .then(function(response){
+                output = response.data.value;
+            })
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+
+        const getSensorReading = function() {
+            fetch(`http://${location.host}/update`)  // send request to route /update
+                .then((resp) => resp.json())
+                .then(function(response) {
+                    document.getElementById('actualTemp').innerHTML = response.data.toFixed(2) + " &#8451;";
+                });
+        }
+
+        getSensorReading();
+        setInterval(getSensorReading, 1000);  //request for update every 1 second
+    });
+</script>
+
+</body>
+</html>
