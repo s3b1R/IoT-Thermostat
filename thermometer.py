@@ -7,11 +7,7 @@ minTemp = None
 actTemp = None
 urlOn = "http://192.168.43.103/relay?state=1"
 urlOff = "http://192.168.43.103/relay?state=0"
-isrunning = False
 
-
-
-app = Flask(__name__)
 
 def temp_monitor():
     while 1:
@@ -30,7 +26,7 @@ def temp_monitor():
         global minTemp
         if temperature < minTemp:
             urllib.urlopen(urlOn)
-        if temperature >minTemp:
+        else:
             urllib.urlopen(urlOff)
 
         time.sleep(1)
@@ -40,11 +36,11 @@ t.daemon = True
 t.start()
 
 
+app = Flask(__name__)
 
 @app.route("/")
 def main():
     return render_template('index.html')
-
 
 @app.route("/update")
 def update():
@@ -56,8 +52,8 @@ def set_temp():
     wishTemp = request.args.get("temp")
     global minTemp
     minTemp = int(wishTemp)
-    templateData = {"resp": minTemp}
+    templateData = {"data": minTemp}
     return jsonify(templateData), 200
 
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=80, debug=False)
+    app.run(host='0.0.0.0', port=80, debug=False)
