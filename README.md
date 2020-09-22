@@ -1,5 +1,5 @@
 # IoT-Thermostat
-Turning on and off a myStrom WiFi Switch, depending on the measured Temperatur with a DS18B20 temperature sensor on a Raspberry Pi.
+Turning on and off a myStrom WiFi Switch, depending on the measured temperature with a DS18B20 temperature sensor on a Raspberry Pi.
 
 ---
 
@@ -33,12 +33,12 @@ Note this ID and insert it in thermometer.py in line 15 into the path instead of
 
 ---
 
-## Find WiFi Switch IP Adress
+## Find WiFi Switch IP address
 
-Pair your myStrom WiFi Switch with your WLAN. Nevertless to say, it hast to be the same network as the Raspberry Pi is in it.  
-Find the IP adress of your WiFi Switch in the network. You can do it in your router interface, or use the `arp -a ` command on your Raspberry Pi.  
+Pair your myStrom WiFi Switch with your WLAN. Neverless to say, it hast to be the same network as the Raspberry Pi is in it.  
+Find the IP address of your WiFi Switch in the network. You can do it in your router interface, or use the `arp -a ` command on your Raspberry Pi.  
   
-Note the IP adress and insert it in thermometer.py in line 8 and 9 into the path instead of the IP adress there.  
+Note the IP address and insert it in thermometer.py in line 8 and 9 into the path instead of the IP address there.  
 
 ---
 
@@ -49,10 +49,10 @@ Now you're ready to run the script. You have to run it as sudo. Be sure, you're 
 
 ## Run the script on startup
 
-If you want to run the script automatically when your Raspberry Pi ist starting up, you can use a crontab for it.  
+If you want to run the script automatically when your Raspberry Pi is starting up, you can use a crontab for it.  
 
 Type `crontab -e` into the Raspberry console and add this line at the bottom of the file:  
 `@reboot /bin/sleep 30; sudo python /home/pi/thermometer/thermometer.py`  
 
-After startup, the thermometer.py script will be executed after 30 seconds. This delay is necessary to wait till a network connection is etablished.
+After startup, the thermometer.py script will be executed after 30 seconds. This delay is necessary to wait till a network connection is established.
 
