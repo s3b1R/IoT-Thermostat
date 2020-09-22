@@ -47,7 +47,7 @@ Note the IP address and insert it in thermometer.py in line 8 and 9 into the pat
 Now you're ready to run the script. You have to run it as sudo. Be sure, you're in the directory where the thermometer.py file is located and type  
 `sudo python thermometer.py` 
 
-## Run the script on startup
+### Run the script on startup
 
 If you want to run the script automatically when your Raspberry Pi is starting up, you can use a crontab for it.  
 
@@ -56,3 +56,6 @@ Type `crontab -e` into the Raspberry console and add this line at the bottom of 
 
 After startup, the thermometer.py script will be executed after 30 seconds. This delay is necessary to wait till a network connection is established.
 
+## See it working...
+
+After starting the script, navigate in your web browser to the IP address of your Raspberry and see in the WEB-GUI the actual temperature and set the target temperature for switching off the WiFi switch.
