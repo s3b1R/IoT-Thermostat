@@ -1,7 +1,5 @@
 # IoT-Thermostat
-Turning on and off a myStrom WiFi Switch, depending on the measured Temperatur with a DS18B20 temperature sensor on a Raspberry Pi. 
-  
-I wrote this code as practical work in the module IoT during the course NDS HF Applikationsentwicklung
+Turning on and off a myStrom WiFi Switch, depending on the measured Temperatur with a DS18B20 temperature sensor on a Raspberry Pi.
 
 ---
 
