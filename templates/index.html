@@ -13,7 +13,7 @@
 
     <div class="form">
         <p>Aktuelle Temperatur:</p>
-        <div class="bold" id='actualTemp'></div>
+        <div class="bold" id='actualTemperature'></div>
     </div>
 
     <div class="set">
@@ -33,7 +33,7 @@
     output.innerHTML = slider.value;
 
     slider.oninput = function() {
-        fetch(`http://${location.host}/set_temp?temp=${slider.value}`)
+        fetch(`http://${location.host}/set_temperature?temperature=${slider.value}`)
             .then((resp) => resp.json())
             .then(function(response){
                 output.innerHTML = response.data.toString();
@@ -47,7 +47,7 @@
             fetch(`http://${location.host}/update`)  // send request to route /update
                 .then((resp) => resp.json())
                 .then(function(response) {
-                    document.getElementById('actualTemp').innerHTML = response.data.toFixed(2) + " &#8451;";
+                    document.getElementById('actualTemperature').innerHTML = response.data.toFixed(2) + " &#8451;";
                 });
         }
 
